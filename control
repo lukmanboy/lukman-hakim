@@ -1,0 +1,150 @@
+using UnityEngine;
+using System.Collections;
+using System.IO;
+
+public class Kontrol : MonoBehaviour
+{
+    public float scalingSpeed = 0.03f;
+    public float rotationSpeed = 70.0f;
+    public float translationSpeed = 5.0f;
+
+    bool repeatScaleUp = false;
+    bool repeatScaleDown = false;
+    bool repeatRotateLeft = false;
+    bool repeatRotateRight = false;
+    bool repeatPositionUp = false;
+    bool repeatPositionDown = false;
+    bool repeatPositionLeft = false;
+    bool repeatPositionRight = false;
+
+    void Start(){}
+    void Update()
+    {
+        if (repeatScaleUp) {
+        	ScaleUpButton ();
+        }
+        if (repeatScaleDown) {
+        	ScaleDownButton ();
+        }
+        if (repeatRotateRight) {
+        	RotationRightButton ();
+        }
+        if (repeatRotateLeft) {
+        	RotationLeftButton ();
+        }
+        if (repeatPositionUp) {
+        	PositionUpButton ();
+        }
+        if (repeatPositionDown) {
+        	PositionDownButton ();
+        }
+        if (repeatPositionRight) {
+        	PositionRightButton ();
+        }
+        if (repeatPositionLeft) {
+        	PositionLeftButton ();
+        }
+    }
+
+    public void ScaleUpButton()
+    {
+    	GameObject.FindWithTag ("Model").transform.localScale += new Vector3
+    	(scalingSpeed, scalingSpeed, scalingSpeed);
+    }
+    public void ScaleUpButtonRepeat()
+    {
+    	repeatScaleUp = true;
+    	Debug.Log ("Up");
+    }
+    public void ScaleUpButtonOff()
+    {
+    	repeatScaleUp = false;
+    	Debug.Log ("Off");
+    }
+
+    public void ScaleDownButton()
+    {
+    	GameObject.FindWithTag ("Model").transform.localScale += new Vector3
+    	(-scalingSpeed, -scalingSpeed, -scalingSpeed);
+    }
+    public void ScaleDownButtonRepeat()
+    {
+    	repeatScaleDown = true;
+    	Debug.Log ("Down");
+    }
+    public void ScaleDownButtonOff()
+    {
+    	repeatScaleDown = false;
+    	Debug.Log ("Off");
+    }
+
+    public void RotationRightButton()
+    {
+    	GameObject.FindWithTag ("Model").transform.Rotate
+    	(0, -rotationSpeed * Time.deltaTime, 0);
+    }
+    public void RotateRightButtonRepeat()
+    {
+    	repeatRotateRight = true;
+    }
+    public void RotateRightButtonOff()
+    {
+    	repeatRotateRight = false;
+    	Debug.Log ("Off");
+    }
+	
+	public void RotationLeftButton()
+    {
+    	GameObject.FindWithTag ("Model").transform.Rotate
+    	(0, rotationSpeed * Time.deltaTime, 0);
+    }
+    public void RotateLeftButtonRepeat()
+    {
+    	repeatRotateLeft = true;
+    }
+    public void RotateLeftButtonOff()
+    {
+    	repeatRotateLeft = false;
+    	Debug.Log ("Off");
+    }
+
+    public void PositionRightButtonOff()
+    {
+    	repeatPositionRight = false;
+    }
+    public void PositionRightButton()
+    {
+    	GameObject.FindWithTag ("Model").transform.Translate
+    	(-translationSpeed*Time.deltaTime, 0, 0);
+    }
+    
+    public void PositionLeftButtonOff()
+    {
+    	repeatPositionLeft = false;
+    }
+    public void PositionLeftButton()
+    {
+    	GameObject.FindWithTag ("Model").transform.Translate
+    	(translationSpeed*Time.deltaTime, 0, 0);
+    }
+
+    public void PositionUpButtonOff()
+    {
+    	repeatPositionUp = false;
+    }
+    public void PositionUpButton()
+    {
+    	GameObject.FindWithTag ("Model").transform.Translate
+    	( 0, 0, -translationSpeed*Time.deltaTime);
+    }
+
+    public void PositionDownButtonOff()
+    {
+    	repeatPositionDown = false;
+    }
+    public void PositionDownButton()
+    {
+    	GameObject.FindWithTag ("Model").transform.Translate
+    	( 0, 0, translationSpeed*Time.deltaTime);
+    }
+}
